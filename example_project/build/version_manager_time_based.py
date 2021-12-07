@@ -36,7 +36,7 @@ def write_version_to_pyproject(version):
 
 
 def write_version_to_packages(version):
-    dir_list = next(os.walk('.'))[1]
+    dir_list = next(os.walk(os.path.join(os.path.dirname(__file__), "..")))[1]
     for d in dir_list:
         if d[0] not in (".", "_") and os.path.exists(os.path.join(d, "__init__.py")):
             target_path = os.path.join(d, "version.txt")
