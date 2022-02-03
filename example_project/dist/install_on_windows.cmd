@@ -8,11 +8,11 @@ set filePath=%1\example-project
 echo Installing to %filePath%
 echo Building Python virtual environment
 py -3 -m venv %filePath%\env
-FOR /F "delims=" %%i IN ('dir /b example_package*.whl') DO set target=%%i
+FOR /F "delims=" %%i IN ('dir /b %~dp0example_package*.whl') DO set target=%~dp0%%i
 call %filePath%\env\Scripts\activate
 pip install %target%
 mklink /H %filePath%\my-executable.exe %filePath%\env\Scripts\my-executable.exe
-xcopy setup.yaml %filePath%\ /F/Q
+xcopy %~dp0setup.yaml %filePath%\ /F/Q
 echo *************************
 echo Installation complete
 echo *************************
