@@ -21,7 +21,7 @@ if len(sys.argv) > 2:
 
 else:
     subprocess.run(["poetry", "version", sys.argv[1]])
-    current_version = str(subprocess.check_output(["poetry", "version"])).strip()
+    current_version = str(subprocess.check_output(["poetry", "version", "--short"]).decode()).strip()
     write_version_to_packages(current_version)
 
 
